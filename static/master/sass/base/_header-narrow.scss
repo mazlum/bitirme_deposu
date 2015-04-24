@@ -1,0 +1,14 @@
+/* Header Narrow */
+@media (min-width: 992px) {
+	#header.narrow {
+		height: auto;
+		min-height: 85px;
+		padding: 0;
+		border-bottom: 1px solid #E9E9E9;
+		box-shadow: 0 0 3px rgba(0, 0, 0, 0.10);
+		> .container {
+			margin-bottom: -48px;
+			height: 75px;
+		}
+	}
+}

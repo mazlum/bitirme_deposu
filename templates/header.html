@@ -1,0 +1,162 @@
+<header id="header">
+    <div class="container">
+        <h1 class="logo">
+            <a href="index.html">
+                <img alt="Porto" width="111" height="54" data-sticky-width="82" data-sticky-height="40" src="/static/img/logo.png">
+            </a>
+        </h1>
+        <div class="search">
+            <form id="searchForm" action="page-search-results.html" method="get">
+                <div class="input-group">
+                    <input type="text" class="form-control search" name="q" id="q" placeholder="Bitirme Ara.." required>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+                    </span>
+                </div>
+            </form>
+        </div>
+        <ul class="social-icons">
+            <li class="facebook"><a href="http://www.facebook.com/" target="_blank" title="Facebook">Facebook</a></li>
+            <li class="twitter"><a href="http://www.twitter.com/" target="_blank" title="Twitter">Twitter</a></li>
+            <li class="linkedin"><a href="http://www.linkedin.com/" target="_blank" title="Linkedin">Linkedin</a></li>
+        </ul>
+        <nav>
+            <ul class="nav nav-pills nav-top">
+                <li class="phone">
+                    <span><i class="fa fa-envelope"></i>mazlum.agar@gmaii.com</span>
+                </li>
+            </ul>
+        </nav>
+        <button class="btn btn-responsive-nav btn-inverse" data-toggle="collapse" data-target=".nav-main-collapse">
+            <i class="fa fa-bars"></i>
+        </button>
+    </div>
+    <div class="navbar-collapse nav-main-collapse collapse">
+        <div class="container">
+            <nav class="nav-main mega-menu">
+                <ul class="nav nav-pills nav-main" id="mainMenu">
+                    <li class="active">
+                        <a href="#">Anasayfa</a>
+                    </li>
+                    <li>
+                        <a href="#">Hakkında</a>
+                    </li>
+                    <li class="dropdown mega-menu-item mega-menu-signin signin" id="headerAccount">
+                        <a class="dropdown-toggle" href="page-login.html">
+                            <i class="fa fa-user"></i> GİRİŞ
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <div class="mega-menu-content">
+                                    <div class="row">
+                                        <div class="col-md-12">
+
+                                            <div class="signin-form">
+
+                                                <span class="mega-menu-sub-title">GİRİŞ</span>
+
+                                                <form action="" id="" method="post">
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <div class="col-md-12">
+                                                                <label>Kullanıcı Adı</label>
+                                                                <input type="text" value="" class="form-control input-lg">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <div class="col-md-12">
+                                                                <a class="pull-right" id="headerRecover" href="#">(Şifremi Unuttum)</a>
+                                                                <label>Şifre</label>
+                                                                <input type="password" value="" class="form-control input-lg">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <span class="remember-box checkbox">
+                                                                <label for="rememberme">
+                                                                    <input type="checkbox" id="rememberme" name="rememberme">Beni Hatırla
+                                                                </label>
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <input type="submit" value="Giriş" class="btn btn-primary pull-right push-bottom" data-loading-text="Loading...">
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+                                                <p class="sign-up-info"><a href="#" id="headerSignUp">Hesap Oluştur</a></p>
+
+                                            </div>
+
+                                            <div class="signup-form">
+                                                <span class="mega-menu-sub-title">HESAP OLUŞTUR</span>
+
+                                                <form action="" id="" method="post">
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <div class="col-md-12">
+                                                                <label>E-mail Adresi</label>
+                                                                <input type="text" value="" class="form-control input-lg">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <div class="col-md-6">
+                                                                <label>Şifre</label>
+                                                                <input type="password" value="" class="form-control input-lg">
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label>Şifre Tekrar</label>
+                                                                <input type="password" value="" class="form-control input-lg">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <input type="submit" value="Hesap Oluştur" class="btn btn-primary pull-right push-bottom" data-loading-text="Loading...">
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+                                                <p class="log-in-info"><a href="#" id="headerSignIn">Giriş Yap</a></p>
+                                            </div>
+
+                                            <div class="recover-form">
+                                                <span class="mega-menu-sub-title">ŞİFREMİ YENİLE</span>
+                                                <p>Mail adresini gir ve devam et. Şifreni yenilemen için talimatları mail adresine göndereceğiz.</p>
+
+                                                <form action="" id="" method="post">
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <div class="col-md-12">
+                                                                <label>E-mail Adresi</label>
+                                                                <input type="text" value="" class="form-control input-lg">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <input type="submit" value="Gönder" class="btn btn-primary pull-right push-bottom" data-loading-text="Loading...">
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+                                                <p class="log-in-info"><a href="#" id="headerRecoverCancel">Giriş</a></p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
