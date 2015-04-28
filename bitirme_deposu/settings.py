@@ -10,6 +10,8 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import django.conf.global_settings as default_settings
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -37,6 +39,16 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bitirme',
+    'nocaptcha_recaptcha',
+)
+
+
+NORECAPTCHA_SITE_KEY = '6Lex_wUTAAAAABtvSrIkHTkDCFf6lzxT1USs3oLH'
+NORECAPTCHA_SECRET_KEY = '6Lex_wUTAAAAACFjjb3Rpw4ga_eEGtJ8WvbxqKvu'
+
+
+TEMPLATE_CONTEXT_PROCESSORS = default_settings.TEMPLATE_CONTEXT_PROCESSORS + (
+    "bitirme.context_processors.login_form",
 )
 
 MIDDLEWARE_CLASSES = (
