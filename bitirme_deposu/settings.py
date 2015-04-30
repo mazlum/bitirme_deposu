@@ -76,6 +76,13 @@ DATABASES = {
     }
 }
 
+CUSTOM_USER_MODEL = 'bitirme.Users'
+
+AUTHENTICATION_BACKENDS = (
+    'bitirme.models.CustomUserModelBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 

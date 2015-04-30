@@ -36,6 +36,9 @@ $(function(){
                 {
                     if(data.status == 1){
                         toastr.success(data.message);
+                        window.setTimeout(function() {
+                                location.href = "/";
+                        }, 2000);
                     }else var msg;
                     if (data.status == 0) {
                         msg = "Giriş yapılırken hata oluştu. Lütfen hataları düzelttikten sonra tekrar deneyiniz<br/>";
@@ -48,9 +51,10 @@ $(function(){
                 },
                 error: function(jqXHR, textStatus, errorThrown)
                 {
-                    //if fails
+                    toastr.alert("There was a problem. Please try again.")
                 }
             }).done(function() {
+                    grecaptcha.reset();
                     $("#loader").remove();
                 });
         event.preventDefault();

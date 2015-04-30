@@ -16,3 +16,22 @@ class LoginForm(AuthenticationForm):
         'invalid_login': force_bytes("Geçersiz kullanıcı adı veya şifre"),
         'inactive': force_bytes("Bu hesap yönetici tarafından askıya alınmıştır. Lütfen yöneticiye başvurunuz."),
     }
+
+
+class ProfileAdminForm(forms.ModelForm):
+    def save(self, commit=True):
+
+        user = super(ProfileAdminForm, self).save(commit=False)
+
+        if(len(user.password) != 77):
+            user.set_password(self.cleaned_data["password"])
+        if commit:
+            user.save()
+        return user
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        username = self.cleaned_data.get('username')
+        if email and User.objects.filter(email=email).exclude(username=username).count():
+            raise forms.ValidationError(u'Email addresses must be unique.')
+        return email

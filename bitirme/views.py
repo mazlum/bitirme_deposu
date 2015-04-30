@@ -36,3 +36,7 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect('/')
+
+
+def create_account(request):
+    return render(request, "create_account.html", locals())

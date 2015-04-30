@@ -1,3 +1,11 @@
 from django.contrib import admin
+from forms import ProfileAdminForm
+from models import Users, City
 
-# Register your models here.
+
+class UsersAdmin(admin.ModelAdmin):
+    form = ProfileAdminForm
+
+
+admin.site.register(Users, UsersAdmin)
+admin.site.register(City)
