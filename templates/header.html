@@ -42,94 +42,33 @@
                         <a href="#">Hakkında</a>
                     </li>
                     {% if not request.user.is_authenticated %}
-                    <li class="dropdown mega-menu-item mega-menu-signin signin" id="headerAccount">
-                        <a class="dropdown-toggle" href="#">
-                            <i class="fa fa-user"></i> GİRİŞ
-                            <i class="fa fa-angle-down"></i>
+                    <li>
+                        <a class="dropdown-toggle" href="{% url "login" %}">
+                            <i class="fa fa-sign-in"></i> GİRİŞ
                         </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <div class="mega-menu-content">
-                                    <div class="row">
-                                        <div class="col-md-12">
-
-                                            <div class="signin-form">
-
-                                                <span class="mega-menu-sub-title">GİRİŞ</span>
-
-                                                <form action='{% url "login" %}' id="LoginForm" method="post">
-                                                    {% csrf_token %}
-                                                    <div class="row">
-                                                        <div class="form-group">
-                                                            <div class="col-md-12">
-                                                                <label>Kullanıcı Adı</label>
-                                                                {{ login_form.username }}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="form-group">
-                                                            <div class="col-md-12">
-                                                                <a class="pull-right" id="headerRecover" href="#">(Şifremi Unuttum)</a>
-                                                                <label>Şifre</label>
-                                                                {{ login_form.password }}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="form-group">
-                                                            <div class="col-md-8">
-                                                                {{ login_form.captcha }}
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <input type="submit" value="Giriş Yap" class="btn btn-primary pull-right push-bottom" style="margin-top: 20px">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group" id="LoginSubmitButton" style="text-align: center;">
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                                <p class="sign-up-info"><a href="{% url "create_account" %}">Hesap Oluştur</a></p>
-                                            </div>
-
-                                            <div class="recover-form">
-                                                <span class="mega-menu-sub-title">ŞİFREMİ YENİLE</span>
-                                                <p>Mail adresini gir ve devam et. Şifreni yenilemen için talimatları mail adresine göndereceğiz.</p>
-
-                                                <form action="ForgotForm" id="" method="post">
-                                                    <div class="row">
-                                                        <div class="form-group">
-                                                            <div class="col-md-12">
-                                                                <label>E-mail Adresi</label>
-                                                                <input type="text" value="" class="form-control input-lg">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <input type="submit" value="Gönder" class="btn btn-primary pull-right push-bottom" data-loading-text="Loading...">
-                                                        </div>
-                                                    </div>
-                                                </form>
-
-                                                <p class="log-in-info"><a href="#" id="headerRecoverCancel">Giriş</a></p>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
+                    </li>
+                    <li>
+                        <a class="dropdown-toggle" href="{% url "create_account" %}">
+                            <i class="fa fa-plus"></i> KAYDOL
+                        </a>
                     </li>
                     {% else %}
                         <li class="dropdown">
                             <a class="dropdown-toggle" href="#">
-                                PROFİL
+                                HESAP
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="">Profil</a></li>
-                                <li><a href="{% url 'logout' %}">Çıkış</a></li>
+                                <li>
+                                    <a href="">
+                                    <i class="fa fa-user"></i> Profil
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'logout' %}">
+                                    <i class="fa fa-sign-out"></i> Çıkış
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     {% endif %}

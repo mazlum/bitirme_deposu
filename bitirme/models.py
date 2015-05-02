@@ -1,3 +1,4 @@
+#-*- coding: utf-8 -*-
 from django.db import models
 from django.contrib.auth.backends import ModelBackend
 from django.contrib.auth.models import User
@@ -8,6 +9,14 @@ from django.core.exceptions import ImproperlyConfigured
 SEX = (
     ('M', 'Erkek'),
     ('F', 'Bayan'),
+)
+
+GRADE = (
+    (0, 'Hazırlık'),
+    (1, '1'),
+    (2, '2'),
+    (3, '3'),
+    (4, '4')
 )
 
 
@@ -21,7 +30,7 @@ class City(models.Model):
 class Users(User):
     university = models.CharField(max_length=50)
     department = models.CharField(max_length=50)
-    grade = models.PositiveSmallIntegerField()
+    grade = models.PositiveSmallIntegerField(choices=GRADE)
     city = models.ForeignKey(City)
     sex = models.CharField(max_length=2, choices=SEX)
 

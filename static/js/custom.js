@@ -6,7 +6,7 @@ toastr.options = {
     "onclick": null,
     "showDuration": "1600",
     "hideDuration": "1000",
-    "timeOut": "5000",
+    "timeOut": "10000",
     "extendedTimeOut": "1000",
     "showEasing": "swing",
     "hideEasing": "linear",
@@ -23,7 +23,7 @@ $(function(){
           alt: 'Loader',
           style: ""
         });
-        img.appendTo($("#LoginSubmitButton"));
+        img.appendTo($("#Loading"));
 
         var action = $(this).attr("action");
         var data = $(this).serializeArray();
@@ -55,6 +55,64 @@ $(function(){
                 }
             }).done(function() {
                     grecaptcha.reset();
+                    $("#loader").remove();
+                });
+        event.preventDefault();
+    });
+
+    $( "#SignUpForm" ).submit(function( event ) {
+        toastr.clear();
+        var img = $('<img />', {
+          id: 'loader',
+          src: '/static/img/custom/loader.gif',
+          alt: 'Loader',
+          style: ""
+        });
+        img.appendTo($("#Loading"));
+
+        var action = $(this).attr("action");
+        var data = $(this).serializeArray();
+            $.ajax(
+            {
+                url : action,
+                type: "POST",
+                data : data,
+                success:function(data, textStatus, jqXHR)
+                {
+                    if(data.status == 1){
+                        toastr.success(data.message);
+                        window.setTimeout(function() {
+                                location.href = "/giris/";
+                        }, 2000);
+                    }else var msg;
+                    if (data.status == 0) {
+                        msg = "Giriş yapılırken hata oluştu. Lütfen hataları düzelttikten sonra tekrar deneyiniz<br/>";
+                        $.each($.parseJSON(data.errors), function (k, v) {
+                            switch (k){
+                                case "username":k="Kullanıcı adı : ";break;
+                                case "password1":k="Şifre : ";break;
+                                case "password2":k="Şifre tekrar : ";break;
+                                case "email":k="Email : ";break;
+                                case "first_name":k="İsim : ";break;
+                                case "last_name":k="Soyisim : ";break;
+                                case "university":k="Üniversite : ";break;
+                                case "department":k="Bölüm : ";break;
+                                case "grade":k="Sınıf : ";break;
+                                case "city":k="Şehir : ";break;
+                                case "captcha":k="Captcha : ";break;
+                                case "sex":k="Cinsiyet : ";break;
+                            }
+                            msg += (k + v[0].message + "<br/>");
+                        });
+                        toastr.error(msg);
+                    }
+
+                },
+                error: function(jqXHR, textStatus, errorThrown)
+                {
+                    toastr.alert("There was a problem. Please try again.")
+                }
+            }).done(function() {
                     $("#loader").remove();
                 });
         event.preventDefault();

@@ -48,7 +48,6 @@ NORECAPTCHA_SECRET_KEY = '6Lex_wUTAAAAACFjjb3Rpw4ga_eEGtJ8WvbxqKvu'
 
 
 TEMPLATE_CONTEXT_PROCESSORS = default_settings.TEMPLATE_CONTEXT_PROCESSORS + (
-    "bitirme.context_processors.login_form",
 )
 
 MIDDLEWARE_CLASSES = (

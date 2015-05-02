@@ -40,15 +40,19 @@
     <!-- Head Libs -->
 	<script src="/static/vendor/modernizr/modernizr.js"></script>
 
-    <script src='https://www.google.com/recaptcha/api.js'></script>
+    {% block js %}
+    {% endblock %}
+
 </head>
 <body>
     <div class="body">
         {% include "header.html" %}
 
-        {% block content %}
-            <!-- Content is hear -->
-        {% endblock %}
+        <div role="main" class="main">
+            {% block content %}
+                <!-- Content is hear -->
+            {% endblock %}
+        </div>
 
         {% include "footer.html" %}
     </div>
