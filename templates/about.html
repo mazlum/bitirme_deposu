@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+ <section class="page-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="breadcrumb">
+                    <li><a href="{% url "index" %}">Anasayfa</a></li>
+                    <li class="active">Hakkında</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Hakkında</h2>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container">
+    <div class="row center">
+        <div class="col-md-12">
+            <h2 class="short word-rotator-title">Daha <strong class="inverted" data-appear-animation="bounceIn">
+                    <span class="word-rotate" data-plugin-options='{"delay": 2000}'>
+                        <span class="word-rotate-items">
+                            <span>öğretici</span>
+                            <span>başarılı</span>
+                            <span>yenilikçi</span>
+                        </span>
+                    </span>
+                </strong> tez çalışmaları.
+            </h2>
+            <p class="featured lead">
+                    Sistemimizin asıl amacı daha yenilikçi ve kullanılabilir tez çalışmaları ortaya çıkarmaktır. Tez
+                çalışmalarını artık öğrencilerin sadece okulu bitirmesi için yapılan birer çalışma olmaktan çıkarmaktır.
+                Bu şekilde faydalı, kullanılabilir çalışmalar yapılmasına teşvik etmektir. Sizde kendi yaptığınız tez
+                çalışmanızı bizimle paylaşabilir ve sizden sonra gelecek öğrencilere ışık tutabilirsiniz. Kişileri
+                başarılı kılan <span class="alternative-font">tecrübe</span> leridir. Öğrenciler tez çalışmalarını yaparken hiç bir tecrübeleri bulunmadığı
+                için zorlanabilmektedir. Sizin tecrübeleriniz onların bu zorlukları atmalarını kolaylaştıracaktır.
+                Her öğrenci kendinden sonra gelen öğrenciye tecrübelerini aktardığı için, ülkemiz için daha faydalı ve
+                kullanılabilir çalışmalar ortaya çıkacaktır.
+            </p>
+        </div>
+    </div>
+    <hr class="tall" />
+</div>
+{% endblock %}

@@ -40,6 +40,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'bitirme',
     'nocaptcha_recaptcha',
+    'django_cleanup',
+    'multiupload',
 )
 
 
@@ -48,6 +50,7 @@ NORECAPTCHA_SECRET_KEY = '6Lex_wUTAAAAACFjjb3Rpw4ga_eEGtJ8WvbxqKvu'
 
 
 TEMPLATE_CONTEXT_PROCESSORS = default_settings.TEMPLATE_CONTEXT_PROCESSORS + (
+    "django.core.context_processors.media",
 )
 
 MIDDLEWARE_CLASSES = (
@@ -108,3 +111,8 @@ TEMPLATE_DIRS = (
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static/'),
 )
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_URL = '/media/'
+
+

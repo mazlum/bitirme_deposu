@@ -1,2 +1,4 @@
 Django==1.8.0
 django-nocaptcha-recaptcha
+django_cleanup
+django-multiupload

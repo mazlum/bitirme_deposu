@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="page-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="breadcrumb">
+                    <li><a href="{% url "index" %}">Anasayfa</a></li>
+                    <li class="active">Kullanıcı</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>{{ user.username }}</h2>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="owl-carousel" data-plugin-options='{"items": 1}'>
+                <div>
+                    <div class="thumbnail" style="text-align: center">
+                        <img alt="" height="300" class="img-responsive" src="{{ request.user.image.url }}">
+                    </div>
+                </div>
+            </div>
+            {{ profile_form.image }}
+        </div>
+
+        <div class="col-md-8">
+            <h2 class="shorter">{{ request.user.first_name }} <strong>{{ request.user.last_name }}</strong></h2>
+            <h4>{{ request.user.university }}</h4>
+
+                <div class="form-group">
+                    <div class="col-md-8">
+                        <div class="input-group input-group-icon">
+                            <span class="input-group-addon">
+                                <span class="icon"><i class="fa fa-user"></i></span>
+                            </span>
+                            <input type="text" value="{{ user.username }}" class="form-control" readonly/>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-8">
+                        <div class="input-group input-group-icon">
+                            <span class="input-group-addon">
+                                <span class="icon"><i class="fa fa-envelope"></i></span>
+                            </span>
+                            <input type="text" value="{{ user.email }}" class="form-control" readonly/>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-8">
+                        <div class="input-group input-group-icon">
+                            <span class="input-group-addon">
+                                <span class="icon"><i class="fa fa-user"></i></span>
+                            </span>
+                             <input type="text" value="{{ user.first_name }}" class="form-control" readonly/>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-8">
+                        <div class="input-group input-group-icon">
+                            <span class="input-group-addon">
+                                <span class="icon"><i class="fa fa-user"></i></span>
+                            </span>
+                          <input type="text" value="{{ user.last_name }}" class="form-control" readonly/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-8">
+                        <div class="input-group input-group-icon">
+                            <span class="input-group-addon">
+                                <span class="icon"><i class="fa fa-university"></i></span>
+                            </span>
+                             <input type="text" value="{{ user.university }}" class="form-control" readonly/>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-8">
+                        <div class="input-group input-group-icon">
+                            <span class="input-group-addon">
+                                <span class="icon"><i class="fa fa-book"></i></span>
+                            </span>
+                            <input type="text" value="{{ user.department }}" class="form-control" readonly/>
+                        </div>
+                    </div>
+                </div>
+               <div class="form-group">
+                    <div class="col-md-8">
+                        <div class="input-group input-group-icon">
+                            <span class="input-group-addon">
+                                <span class="icon"><i class="fa fa-book"></i></span>
+                            </span>
+                            <input type="text" value="{{ user.grade }}" class="form-control" readonly/>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-8">
+                        <div class="input-group input-group-icon">
+                            <span class="input-group-addon">
+                                <span class="icon"><i class="fa fa-bank"></i></span>
+                            </span>
+                           <input type="text" value="{{ user.city }}" class="form-control" readonly/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-8">
+                        <div class="input-group input-group-icon">
+                            <span class="input-group-addon">
+                                <span class="icon"><i class="fa fa-female"></i> <i class="fa fa-male"></i></span>
+                            </span>
+                            <input type="text" value="{% if user.sex == "M" %}Erkek{% else %}Bayan{% endif %}" class="form-control" readonly/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <hr class="tall" />
+
+</div>
+{% endblock %}

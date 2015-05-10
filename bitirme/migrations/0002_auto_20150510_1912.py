@@ -11,9 +11,9 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
-            model_name='users',
-            name='grade',
-            field=models.PositiveSmallIntegerField(),
+        migrations.RenameField(
+            model_name='file',
+            old_name='pdf',
+            new_name='file',
         ),
     ]

@@ -1,14 +1,14 @@
 <header id="header">
     <div class="container">
         <h1 class="logo">
-            <a href="index.html">
-                <img alt="Porto" height="90" data-sticky-width="82" data-sticky-height="40" src="/static/thub2.png">
+            <a href="{% url "index" %}">
+                <img alt="Porto" height="90" data-sticky-width="82" data-sticky-height="40" src="/static/thub.png">
             </a>
         </h1>
         <div class="search">
             <form id="searchForm" action="page-search-results.html" method="get">
                 <div class="input-group">
-                    <input type="text" class="form-control search" name="q" id="q" placeholder="Bitirme Ara.." required>
+                    <input type="text" class="form-control search" name="q" id="q" placeholder="Tez Ara.." required>
                     <span class="input-group-btn">
                         <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
                     </span>
@@ -23,7 +23,7 @@
         <nav>
             <ul class="nav nav-pills nav-top">
                 <li class="phone">
-                    <span><i class="fa fa-envelope"></i>mazlum.agar@gmaii.com</span>
+                    <span><i class="fa fa-envelope"></i>mazlum.agar@gmail.com</span>
                 </li>
             </ul>
         </nav>
@@ -36,10 +36,10 @@
             <nav class="nav-main mega-menu">
                 <ul class="nav nav-pills nav-main" id="mainMenu">
                     <li class="active">
-                        <a href="#">Anasayfa</a>
+                        <a href="{% url "index" %}">Anasayfa</a>
                     </li>
                     <li>
-                        <a href="#">Hakkında</a>
+                        <a href="{% url "about" %}">Hakkında</a>
                     </li>
                     {% if not request.user.is_authenticated %}
                     <li>
@@ -53,6 +53,11 @@
                         </a>
                     </li>
                     {% else %}
+                    <li>
+                        <a class="dropdown-toggle" href="{% url "thesis_create" %}">
+                            <i class="fa fa-plus"></i> TEZ EKLE
+                        </a>
+                    </li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" href="#">
                                 HESAP
@@ -60,7 +65,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="">
+                                    <a href="{% url "profile" %}">
                                     <i class="fa fa-user"></i> Profil
                                     </a>
                                 </li>

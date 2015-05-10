@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+{% block js %}
+    {% load staticfiles %}
+    <script type="text/javascript" src="{% static "js/jquery.form.js" %}"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+{% endblock %}
+{% block content %}
+<section class="page-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="breadcrumb">
+                    <li><a href="{% url "index" %}">Anasayfa</a></li>
+                    <li class="active">Profil</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Profilim</h2>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container">
+    <div class="row">
+    <form class="form-horizontal form-bordered" action="{% url "profile_edit" %}" method="POST" enctype="multipart/form-data" id="ProfileEditForm">
+        {% csrf_token %}
+        <div class="col-md-4">
+            <div class="owl-carousel" data-plugin-options='{"items": 1}'>
+                <div>
+                    <div class="thumbnail" style="text-align: center">
+                        <img alt="" height="300" class="img-responsive" src="{{ request.user.image.url }}">
+                    </div>
+                </div>
+            </div>
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <div class="input-group input-group-icon">
+                                    <span class="btn btn-default btn-file btn-file-custom" title="Resim yükle">
+                                        {{ profile_form.image }}
+                                    </span>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+
+        <div class="col-md-8">
+            <a href="{% url "user_profile" request.user.username %}" target="_blank" style="text-decoration: none"><h2 class="shorter">{{ request.user.first_name }} <strong>{{ request.user.last_name }}</strong></h2></a>
+            <h4>{{ request.user.university }}</h4>
+
+                <div class="form-group">
+                    <div class="col-md-8">
+                        <div class="input-group input-group-icon">
+                            <span class="input-group-addon">
+                                <span class="icon"><i class="fa fa-user"></i></span>
+                            </span>
+                            {{ profile_form.username }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-8">
+                        <div class="input-group input-group-icon">
+                            <span class="input-group-addon">
+                                <span class="icon"><i class="fa fa-envelope"></i></span>
+                            </span>
+                            {{ profile_form.email }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-8">
+                        <div class="input-group input-group-icon">
+                            <span class="input-group-addon">
+                                <span class="icon"><i class="fa fa-user"></i></span>
+                            </span>
+
+                            {{ profile_form.first_name }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-8">
+                        <div class="input-group input-group-icon">
+                            <span class="input-group-addon">
+                                <span class="icon"><i class="fa fa-user"></i></span>
+                            </span>
+                           {{ profile_form.last_name }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-8">
+                        <div class="input-group input-group-icon">
+                            <span class="input-group-addon">
+                                <span class="icon"><i class="fa fa-university"></i></span>
+                            </span>
+                            {{ profile_form.university }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-8">
+                        <div class="input-group input-group-icon">
+                            <span class="input-group-addon">
+                                <span class="icon"><i class="fa fa-book"></i></span>
+                            </span>
+                           {{ profile_form.department }}
+                        </div>
+                    </div>
+                </div>
+               <div class="form-group">
+                    <div class="col-md-8">
+                        <div class="input-group input-group-icon">
+                            <span class="input-group-addon">
+                                <span class="icon"><i class="fa fa-book"></i></span>
+                            </span>
+                            {{ profile_form.grade }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-8">
+                        <div class="input-group input-group-icon">
+                            <span class="input-group-addon">
+                                <span class="icon"><i class="fa fa-bank"></i></span>
+                            </span>
+                            {{ profile_form.city }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-8">
+                        <div class="input-group input-group-icon">
+                            <span class="input-group-addon">
+                                <span class="icon"><i class="fa fa-female"></i> <i class="fa fa-male"></i></span>
+                            </span>
+                            {{ profile_form.sex }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-8">
+                        <div class="input-group input-group-icon">
+                            {{ profile_form.captcha }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-8">
+                        <span id="Loading" style="margin-left:220px"></span>
+                        <div class="input-group input-group-icon" style="float: right;">
+                           <input type="submit" id="submit" value="Güncelle" name="edit" class="btn btn-primary pull-right push-bottom"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <hr class="tall" />
+
+</div>
+
+{% endblock %}

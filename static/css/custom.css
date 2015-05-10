@@ -1,0 +1,10 @@
+input[name="images"], input[name="files"], input[name="image"]  {
+    width: 320px;
+    cursor: pointer;
+    padding: 30px;
+}
+
+.btn-file-custom{
+    border-radius: 0px 4px 4px 0;
+    padding: 0;
+}
