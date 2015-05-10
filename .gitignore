@@ -1,3 +1,6 @@
 db.sqlite3
 .idea/*
 *.pyc
+media/profile/*
+media/file/*
+media/image/*
