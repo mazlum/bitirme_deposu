@@ -9,6 +9,7 @@ from validators import *
 from random import choice
 from string import ascii_letters, digits
 from os import path
+from autoslug import AutoSlugField
 
 SEX = (
     ('M', 'Erkek'),
@@ -25,18 +26,20 @@ GRADE = (
 
 
 def profile_file_name(instance, filename):
-    file_name, file_extension = path.splitext(filename)
+    file_n, file_extension = path.splitext(filename)
     return path.join('profile', ''.join([choice(ascii_letters + digits) for n in xrange(30)]) + file_extension)
 
 
 def file_name(instance, filename):
-    file_name, file_extension = path.splitext(filename)
-    return path.join('file', ''.join([choice(ascii_letters + digits) for n in xrange(30)]) + file_extension)
+    file_n, file_extension = path.splitext(filename)
+    return path.join('file', '{0}_{1}{2}'.format(file_n, ''.join([choice(ascii_letters + digits) for n in xrange(10)]),
+                                                 file_extension))
 
 
 def image_name(instance, filename):
-    file_name, file_extension = path.splitext(filename)
-    return path.join('image', ''.join([choice(ascii_letters + digits) for n in xrange(30)]) + file_extension)
+    file_n, file_extension = path.splitext(filename)
+    return path.join('image', '{0}_{1}{2}'.format(file_n, ''.join([choice(ascii_letters + digits) for n in xrange(10)]),
+                                                  file_extension))
 
 
 class City(models.Model):
@@ -70,6 +73,7 @@ class Image(models.Model):
 class Thesis(models.Model):
     user = models.ForeignKey(Users)
     name = models.CharField(max_length=100)
+    slug = AutoSlugField(populate_from='name', editable=True)
     content = models.TextField()
     image = models.ManyToManyField(Image)
     file = models.ManyToManyField(File)

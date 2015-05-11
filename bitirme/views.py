@@ -4,9 +4,10 @@ from django.contrib.auth import logout, login, authenticate
 from django.views.decorators.http import require_POST, require_GET
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
+from django.db import transaction
 from bitirme.forms import LoginForm, RegisterForm, EditProfileForm, ThesisForm
 from bitirme.models import Users, File, Image, Thesis
-from django.db import transaction
+from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 import json
 
 
@@ -153,3 +154,27 @@ def thesis_create_ajax(request):
                             content_type="application/json")
     response = {"status": 0, "errors": thesis_form.errors.as_json()}
     return HttpResponse(json.dumps(response), content_type="application/json")
+
+
+@require_GET
+def theses(request):
+    title = "Tezler"
+    page = request.GET.get("sayfa", 1)
+
+    all_theses = Thesis.objects.all()
+    theses_pages = Paginator(all_theses, 10, request=request)
+
+    try:
+        theses = theses_pages.page(page)
+    except EmptyPage:
+        return HttpResponseRedirect('/')
+    except PageNotAnInteger:
+        return HttpResponseRedirect('/')
+
+    return render(request, 'theses.html', locals())
+
+
+def thesis_show(request, slug):
+    thesis = get_object_or_404(Thesis, slug=slug)
+    title = thesis.name
+    return render(request, 'thesis_show.html', locals())

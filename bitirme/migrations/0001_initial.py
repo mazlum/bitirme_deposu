@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
             name='File',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('pdf', models.FileField(upload_to=bitirme.models.file_name, validators=[bitirme.validators.validate_thesis_file, bitirme.validators.validate_thesis_file_size])),
+                ('file', models.FileField(upload_to=bitirme.models.file_name, validators=[bitirme.validators.validate_thesis_file, bitirme.validators.validate_thesis_file_size])),
             ],
         ),
         migrations.CreateModel(
@@ -41,6 +41,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=100)),
+                ('slug', models.SlugField(max_length=100)),
                 ('content', models.TextField()),
                 ('file', models.ManyToManyField(to='bitirme.File')),
                 ('image', models.ManyToManyField(to='bitirme.Image')),

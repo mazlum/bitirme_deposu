@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="breadcrumb">
+                    <li><a href="{% url "index" %}">Anasayfa</a></li>
+                    <li class="active">Tez</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>{{ thesis.name | title }}</h2>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="owl-carousel" data-plugin-options='{"items": 1}'>
+                 {% for image in thesis.image.all %}
+                <div  class="thumbnail" style="text-align: center">
+                    <a class="img-thumbnail lightbox" href="{{ image.image.url }}" data-plugin-options='{"type":"image"}' style="border:none">
+                        <img class="img-responsive" height="300" src="{{ image.image.url }}">
+                        <span class="zoom">
+                            <i class="fa fa-search"></i>
+                        </span>
+                    </a>
+                </div>
+
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h2 class="shorter">{{ thesis.name }}</h2>
+            <h4></h4>
+
+                <a href="{% url "user_profile" thesis.user.username %}" class="alert" target="_blank">{{ thesis.user.get_full_name }}</a>
+
+                <div class="toogle" data-plugin-toggle="">
+                    <section class="toggle">
+                        <label>Tez Açıklaması</label>
+                        <div class="toggle-content">
+                            <p>{{ thesis.content }}</p>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="toogle" data-plugin-toggle="">
+                    <section class="toggle">
+                        <label>Tez Dosyaları</label>
+                        <div class="toggle-content">
+                            <p>
+                                <ul class="list icons list-unstyled">
+                                    {% for file in thesis.file.all %}
+                                    <li><i class="fa fa-check"></i>
+                                        <a href="{{ file.file.url }}" target="_blank"> {{ file.file.name }}</a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </p>
+                        </div>
+                    </section>
+                </div>
+
+    </div>
+
+    <hr class="tall" />
+
+</div>
+{% endblock %}

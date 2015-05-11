@@ -36,10 +36,13 @@
             <nav class="nav-main mega-menu">
                 <ul class="nav nav-pills nav-main" id="mainMenu">
                     <li class="active">
-                        <a href="{% url "index" %}">Anasayfa</a>
+                        <a href="{% url "index" %}">ANASAYFA</a>
                     </li>
                     <li>
-                        <a href="{% url "about" %}">Hakkında</a>
+                        <a href="{% url "about" %}">HAKKINDA</a>
+                    </li>
+                    <li>
+                        <a href="{% url "theses" %}">TEZLER</a>
                     </li>
                     {% if not request.user.is_authenticated %}
                     <li>

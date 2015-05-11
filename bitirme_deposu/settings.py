@@ -42,7 +42,14 @@ INSTALLED_APPS = (
     'nocaptcha_recaptcha',
     'django_cleanup',
     'multiupload',
+    'pure_pagination',
+    'autoslug',
 )
+
+PAGINATION_SETTINGS = {
+    'PAGE_RANGE_DISPLAYED': 2,
+    'MARGIN_PAGES_DISPLAYED': 2,
+}
 
 
 NORECAPTCHA_SITE_KEY = '6Lex_wUTAAAAABtvSrIkHTkDCFf6lzxT1USs3oLH'

@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="breadcrumb">
+                    <li><a href="{% url "index" %}">Anasayfa</a></li>
+                    <li class="active">Tezler</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Tezler / {{ page }}</h2>
+            </div>
+        </div>
+    </div>
+</section>
+<div role="main" class="main shop">
+    <div class="container">
+        <hr class="tall">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row featured-boxes">
+                    <div class="col-md-12">
+                        <div class="featured-box featured-box-secundary featured-box-cart">
+                            <div class="box-content">
+                                    <table cellspacing="0" class="shop_table cart">
+                                        <thead>
+                                            <tr>
+                                                <th class="product-remove">
+                                                    Sıra
+                                                </th>
+                                                <th class="product-name">
+                                                    Tez Başlığı
+                                                </th>
+                                        </thead>
+                                        <tbody>
+                                        {% for thesis in theses.object_list %}
+                                            <tr class="cart_table_item">
+                                                <td class="product-remove">
+                                                   {{  forloop.counter0|add:theses.start_index }}
+                                                </td>
+                                                <td class="product-name">
+                                                    <a href="{% url "thesis_show" thesis.slug %}">{{ thesis.name }}</a>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+
+                                        {% if theses.has_previous or theses.has_next %}
+                                           <nav style="text-align: center">
+                                                {% load i18n %}
+                                                <ul class="pagination">
+                                                    {% if theses.has_previous %}
+                                                        <li><a href="?sayfa={{ theses.previous_page_number }}" class="prev">‹‹</a></li>
+                                                    {% else %}
+                                                        <li><span class="disabled prev">‹‹ </span></li>
+                                                    {% endif %}
+                                                    {% for page in theses.pages %}
+                                                        {% if page %}
+                                                            {% ifequal page theses.number %}
+                                                                <li class="active"><span>{{ page }}</span></li>
+                                                            {% else %}
+                                                                <li><a href="?sayfa={{ page }}" class="page">{{ page }}</a></li>
+                                                            {% endifequal %}
+                                                        {% else %}
+                                                            <li><span>...</span></li>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                    {% if theses.has_next %}
+                                                        <li><a href="?sayfa={{ theses.next_page_number }}" class="next"> ››</a></li>
+                                                    {% else %}
+                                                        <li><span class="disabled next">››</span></li>
+                                                    {% endif %}
+                                                </ul>
+                                           </nav>
+                                        {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

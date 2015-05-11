@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+import autoslug.fields
 
 
 class Migration(migrations.Migration):
@@ -11,9 +12,9 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RenameField(
-            model_name='file',
-            old_name='pdf',
-            new_name='file',
+        migrations.AlterField(
+            model_name='thesis',
+            name='slug',
+            field=autoslug.fields.AutoSlugField(),
         ),
     ]

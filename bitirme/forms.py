@@ -55,7 +55,7 @@ class ThesisAdminForm(forms.ModelForm):
 
     def clean_image(self):
         get_image = self.cleaned_data.get('image')
-        if get_image.count() > 0:
+        if get_image.count() > 5:
             raise forms.ValidationError("Image number should be at least 5")
         return get_image
 
@@ -202,7 +202,7 @@ class ThesisForm(forms.ModelForm):
         fields = ['name', 'content']
 
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control', 'placeHolder': 'Tez Adı'}),
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeHolder': 'Tez Başlığı'}),
             'content': forms.Textarea(attrs={'class': 'form-control', 'placeHolder': 'Tez Açıklaması'}),
         }
         error_messages = {
