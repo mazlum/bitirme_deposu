@@ -18,6 +18,7 @@ class ImageWidget(AdminFileWidget):
 
 class UsersAdmin(admin.ModelAdmin):
     form = ProfileAdminForm
+    list_display = ['username', 'university', 'department', 'grade', 'city', 'sex', 'image_thumb']
 
     def formfield_for_dbfield(self, db_field, **kwargs):
         if db_field.name == 'image':
@@ -29,10 +30,24 @@ class UsersAdmin(admin.ModelAdmin):
 
 class ThesisAdmin(admin.ModelAdmin):
     form = ThesisAdminForm
+    list_display = ['name', 'user']
+    filter_horizontal = ['image', 'file']
+
+
+class ImageAdmin(admin.ModelAdmin):
+    list_display = ['image', 'image_thumb']
+
+    def formfield_for_dbfield(self, db_field, **kwargs):
+        if db_field.name == 'image':
+            request = kwargs.pop("request", None)
+            kwargs['widget'] = ImageWidget
+            return db_field.formfield(**kwargs)
+        return super(ImageAdmin, self).formfield_for_dbfield(db_field, **kwargs)
+
 
 admin.site.register(Users, UsersAdmin)
 admin.site.register(City)
 admin.site.register(Thesis, ThesisAdmin)
 admin.site.register(File)
-admin.site.register(Image)
+admin.site.register(Image, ImageAdmin)
 

@@ -6,6 +6,7 @@ from django.utils.encoding import force_bytes
 from models import Users, Thesis, File, Image, GRADE, SEX
 from multiupload.fields import MultiFileField
 from validators import validate_multi_thesis_file, validate_multi_image_file
+from django.core.validators import RegexValidator
 
 ERROR_MESSAGES = {
     'invalid': u'Bu alan için geçersiz değer girdiniz.',
@@ -14,13 +15,12 @@ ERROR_MESSAGES = {
 
 
 class LoginForm(AuthenticationForm):
-    captcha = NoReCaptchaField(ERROR_MESSAGES,
-                               gtag_attrs={'data-theme': 'dark'})
+    captcha = NoReCaptchaField(error_messages=ERROR_MESSAGES)
     username = forms.CharField(
-        error_messages={'required': 'Kullanıcı adı zorunludur', 'invalid': 'Geçersiz kullanıcı adı'},
+        error_messages=ERROR_MESSAGES,
         label='Kullanıcı Adı', widget=forms.TextInput(attrs={'class': 'form-control input-lg',
                                                              'placeHolder': 'Kullanıcı adı'}))
-    password = forms.CharField(error_messages={'required': 'Şifre zorunludur', 'invalid': 'Geçersiz şifre'},
+    password = forms.CharField(error_messages=ERROR_MESSAGES,
                                label='Şifre', widget=forms.PasswordInput(attrs={'class': 'form-control input-lg',
                                                                                 'placeHolder': 'Şifre'}))
 
@@ -61,7 +61,7 @@ class ThesisAdminForm(forms.ModelForm):
 
 
 class RegisterForm(UserCreationForm):
-    captcha = NoReCaptchaField(error_messages=ERROR_MESSAGES, gtag_attrs={'data-theme': 'dark'})
+    captcha = NoReCaptchaField(error_messages=ERROR_MESSAGES)
     password1 = forms.CharField(label="Şifre", error_messages=ERROR_MESSAGES,
                                 widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeHolder': 'Şifre'}))
     password2 = forms.CharField(label="Şifre Tekrar", error_messages=ERROR_MESSAGES,
@@ -139,7 +139,7 @@ class RegisterForm(UserCreationForm):
 
 
 class EditProfileForm(forms.ModelForm):
-    captcha = NoReCaptchaField(error_messages=ERROR_MESSAGES, gtag_attrs={'data-theme': 'dark'})
+    captcha = NoReCaptchaField(error_messages=ERROR_MESSAGES)
 
     class Meta:
         model = Users
@@ -223,4 +223,13 @@ class ThesisForm(forms.ModelForm):
     images = MultiFileField(min_num=1, max_num=5, max_file_size=1024*1024*5, validators=[validate_multi_image_file],
                             error_messages=file_error_messages)
 
-    captcha = NoReCaptchaField(error_messages=ERROR_MESSAGES, gtag_attrs={'data-theme': 'dark'})
+    captcha = NoReCaptchaField(error_messages=ERROR_MESSAGES)
+
+
+class SearchForm(forms.Form):
+    q = forms.CharField(max_length=100, error_messages=ERROR_MESSAGES, label='Arama',
+                        validators=[RegexValidator(regex=u'^[\wçıüğöşÇİÜĞÖŞ]{3,100}$',
+                                                   message='Arama yaparken 3-100 alfanümerik karakter girebilirsiniz.',
+                                                   code='invalid_search')
+                                    ]
+                        )

@@ -58,16 +58,32 @@ class Users(User):
     city = models.ForeignKey(City)
     sex = models.CharField(max_length=2, choices=SEX)
 
-    def get_sex(self):
-        return self.sex
+    def __unicode__(self):
+        return self.username
+
+    def image_thumb(self):
+            return '<img src="%s" height="200"/>' % self.image.url
+    image_thumb.short_description = 'Profile'
+    image_thumb.allow_tags = True
 
 
 class File(models.Model):
     file = models.FileField(upload_to=file_name, validators=[validate_thesis_file, validate_thesis_file_size])
 
+    def __unicode__(self):
+        return self.file.name
+
 
 class Image(models.Model):
     image = models.ImageField(upload_to=image_name, validators=[validate_file, validate_thesis_image_size])
+
+    def __unicode__(self):
+        return self.image.name
+
+    def image_thumb(self):
+            return '<img src="%s" height="200"/>' % self.image.url
+    image_thumb.short_description = 'Image'
+    image_thumb.allow_tags = True
 
 
 class Thesis(models.Model):
@@ -77,6 +93,9 @@ class Thesis(models.Model):
     content = models.TextField()
     image = models.ManyToManyField(Image)
     file = models.ManyToManyField(File)
+
+    def __unicode__(self):
+        return self.name
 
 
 class CustomUserModelBackend(ModelBackend):

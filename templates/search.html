@@ -6,13 +6,13 @@
             <div class="col-md-12">
                 <ul class="breadcrumb">
                     <li><a href="{% url "index" %}">Anasayfa</a></li>
-                    <li class="active">Tezler</li>
+                    <li class="active">Tez Arama</li>
                 </ul>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
-                <h2>Tezler / {{ page }}</h2>
+                <h2>Tez Arama : {{ clean_data.q }}</h2>
             </div>
         </div>
     </div>
@@ -26,7 +26,8 @@
                     <div class="col-md-12">
                         <div class="featured-box featured-box-secundary featured-box-cart">
                             <div class="box-content">
-                            {% if all_theses.count > 0 %}
+                            {% if not search_form.errors %}
+                                {% if all_theses.count > 0 %}
                                     <table cellspacing="0" class="shop_table cart">
                                         <thead>
                                             <tr>
@@ -79,11 +80,26 @@
                                                 </ul>
                                            </nav>
                                         {% endif %}
-                            {% else %}
+                                {% else %}
                                     <div class="alert alert-danger">
-                                        Sisteme kayıtlı tez bulunmamaktadır.
+                                        Arama sonucunda eşleşen tez bulunamadı.
                                     </div>
+                                {% endif %}
+                            {% else %}
+                                <div class="alert alert-danger" style="text-align: left">
+                                    {% for field in search_form %}
+                                            {% if field.errors %}
+                                                {{ field.label }} :
+                                                <ul>
+                                                {% for error in field.errors %}
+                                                    <li>{{ error }}</li>
+                                                {% endfor %}
+                                                </ul>
+                                            {% endif %}
+                                    {% endfor %}
+                                </div>
                             {% endif %}
+
                             </div>
                         </div>
                     </div>

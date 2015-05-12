@@ -15,4 +15,5 @@ urlpatterns = patterns('bitirme.views',
                        url(r'^tez-olustur-ajax/$', 'thesis_create_ajax', name='thesis_create_ajax'),
                        url(r'tezler/$', 'theses', name='theses'),
                        url(r'tez/([A-Za-z0-9\-]{1,100})/$', 'thesis_show', name='thesis_show'),
+                       url(r'arama/$', 'search', name='search')
 )

@@ -6,7 +6,7 @@
             </a>
         </h1>
         <div class="search">
-            <form id="searchForm" action="page-search-results.html" method="get">
+            <form id="searchForm" action="{% url "search" %}" method="get">
                 <div class="input-group">
                     <input type="text" class="form-control search" name="q" id="q" placeholder="Tez Ara.." required>
                     <span class="input-group-btn">

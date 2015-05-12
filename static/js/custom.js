@@ -43,7 +43,12 @@ $(function(){
                     if (data.status == 0) {
                         msg = "Giriş yapılırken hata oluştu. Lütfen hataları düzelttikten sonra tekrar deneyiniz<br/>";
                         $.each($.parseJSON(data.errors), function (k, v) {
-                            msg += (v[0].message + "<br/>");
+                            switch (k){
+                                case "username":k="Kullanıcı adı : ";break;
+                                case "password":k="Şifre : ";break;
+                                case "captcha":k="Captcha : ";break;
+                            }
+                            msg += (k + v[0].message + "<br/>");
                         });
                         toastr.error(msg);
                     }

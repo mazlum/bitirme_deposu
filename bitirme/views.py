@@ -5,7 +5,7 @@ from django.views.decorators.http import require_POST, require_GET
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from django.db import transaction
-from bitirme.forms import LoginForm, RegisterForm, EditProfileForm, ThesisForm
+from bitirme.forms import LoginForm, RegisterForm, EditProfileForm, ThesisForm, SearchForm
 from bitirme.models import Users, File, Image, Thesis
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 import json
@@ -174,7 +174,30 @@ def theses(request):
     return render(request, 'theses.html', locals())
 
 
+@require_GET
 def thesis_show(request, slug):
     thesis = get_object_or_404(Thesis, slug=slug)
     title = thesis.name
     return render(request, 'thesis_show.html', locals())
+
+
+def search(request):
+    page = request.GET.get("sayfa", 1)
+    title = "Arama"
+    search_form = SearchForm(data=request.GET)
+    if search_form.is_valid():
+        clean_data = search_form.cleaned_data
+
+        all_theses = Thesis.objects.filter(name__icontains=clean_data['q'])
+
+        theses_pages = Paginator(all_theses, 10, request=request)
+
+        try:
+            theses = theses_pages.page(page)
+        except EmptyPage:
+            return HttpResponseRedirect('/')
+        except PageNotAnInteger:
+            return HttpResponseRedirect('/')
+
+        title = clean_data['q']
+    return render(request, "search.html", locals())
